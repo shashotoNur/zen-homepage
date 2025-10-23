@@ -13,7 +13,7 @@ A simple, fast, and highly customizable browser startpage designed for **minimal
       * Use **`Ctrl + Space`** (or $\text{Cmd} + \text{Space}$ on macOS) to cycle to the **next** search engine.
       * Use **`Ctrl + Shift + Space`** to cycle to the **previous** search engine.
   * **Quick Links ("The Shelf"):** A customizable list of essential website shortcuts displayed at the bottom.
-  * **Zero Dependencies:** The entire startpage is contained within one self-sufficient **`home.html`** file (HTML, CSS, and JavaScript are inline) for maximum portability and speed.
+  * **Zero Dependencies:** The entire startpage is contained within one self-sufficient **`index.html`** file (HTML, CSS, and JavaScript are inline) for maximum portability and speed.
 
 -----
 
@@ -21,16 +21,16 @@ A simple, fast, and highly customizable browser startpage designed for **minimal
 
 Since this project is a single HTML file, setup is straightforward.
 
-1.  **Save the file:** Save the provided code as a file named `home.html` on your local computer (e.g., in your Documents folder).
+1.  **Save the file:** Save the provided code as a file named `index.html` on your local computer (e.g., in your Documents folder).
 2.  **Configure your Browser:**
-      * **New Tab Page:** To use this as your New Tab page, you will likely need a browser extension like **"New Tab Override"** or something similar. Use the extension to redirect your new tab to the path of your saved file (e.g., `file:///path/to/your/home.html`).
-      * **Homepage:** Alternatively, set your browser's homepage to the local path of your `home.html` file.
+      * **New Tab Page:** To use this as your New Tab page, you will likely need a browser extension like **"New Tab Override"** or something similar. Use the extension to redirect your new tab to the path of your saved file (e.g., `file:///path/to/your/index.html`).
+      * **Homepage:** Alternatively, set your browser's homepage to the local path of your `index.html` file.
 
 -----
 
 ## Customization
 
-You can tailor the startpage to your preferences by editing the `home.html` file.
+You can tailor the startpage to your preferences by editing the `index.html` file.
 
 ### 1\. Search Engines
 
