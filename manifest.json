@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "Zen Homepage",
+  "version": "1.0.1",
+  "description": "A simple, fast, and highly customizable browser startpage designed for minimalism and efficiency.",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{fd786ab2-27ce-4c71-b305-17321560dab3}",
+      "data_collection_permissions": {
+        "description": "This extension does not collect or transmit any personal data.",
+        "required": [
+          "none"
+        ]
+      }
+    }
+  }
+}

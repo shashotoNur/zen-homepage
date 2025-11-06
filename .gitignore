@@ -1,0 +1,13 @@
+# Ignore everything by default
+*
+
+# Files to be tracked
+!.gitignore
+!index.html
+!style.css
+!main.js
+!manifest.json
+!screenshot.png
+!README.md
+!LICENCE
+!web-ext-artifacts/*.xpi

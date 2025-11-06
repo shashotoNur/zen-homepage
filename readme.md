@@ -19,12 +19,14 @@ A simple, fast, and highly customizable browser startpage designed for **minimal
 
 ## Installation
 
-Since this project is a single HTML file, setup is straightforward.
+This repo is hosted as a [Github Page](https://shashotonur.github.io/zen-homepage/). You can simply set it as homepage and new tab (using the addon **"New Tab Override"**).
 
-1.  **Save the file:** Save the provided code as a file named `index.html` on your local computer (e.g., in your Documents folder).
-2.  **Configure your Browser:**
-      * **New Tab Page:** To use this as your New Tab page, you will likely need a browser extension like **"New Tab Override"** or something similar. Use the extension to redirect your new tab to the path of your saved file (e.g., `file:///path/to/your/index.html`).
-      * **Homepage:** Alternatively, set your browser's homepage to the local path of your `index.html` file.
+Alternatively, a cleaner approach would be to set it up without a server:
+1. Open the `.xpi` file inside `web-ext-artifacts` directory with your browser to install it as an addon. It should automatically set the new tab page.
+2. For the home page, you would need the addon's url.
+    a. Scroll down to the Zen Homepage addon in the `about:debugging#/runtime/this-firefox` page.
+    b. There should be manifest url similar to `moz-extension://<some_text>/manifest.json`. Copy it.
+    c. Go to `about:preferences#home` and set homepage to custom url, insert the copied url in the empty field, replace `manifest.json` at the end with `index.html` and press enter.
 
 -----
 
@@ -34,7 +36,7 @@ You can tailor the startpage to your preferences by editing the `index.html` fil
 
 ### 1\. Search Engines
 
-Modify or add new search engines by editing the `engines` array located within the bottom `<script>` block.
+Modify or add new search engines by editing the `engines` array located within the `main.js` file.
 
 | Property | Description |
 | :--- | :--- |
@@ -69,7 +71,7 @@ To change a link, modify the `href` and the visible text.
 
 ### 3\. Appearance and Colors (CSS)
 
-All styles, including the dark mode color scheme, are in the `<style>` block at the top of the file.
+All styles, including the dark mode color scheme, are in the `style.css` file.
 
 You can adjust the theme colors using the CSS variables defined in `:root`:
 

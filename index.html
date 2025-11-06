@@ -1,231 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="icon"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='currentColor' d='M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3zm0 2.45L18.67 12H15v6h-2v-6h-2v6H9v-6H5.33L12 5.45z'/%3E%3C/svg%3E"
-        type="image/svg+xml">
-    <style>
-        :root {
-            --text-color: #fff;
-            --bg-color: #000;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <link rel="icon"
+            href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='currentColor' d='M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3zm0 2.45L18.67 12H15v6h-2v-6h-2v6H9v-6H5.33L12 5.45z'/%3E%3C/svg%3E"
+            type="image/svg+xml">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <main>
+            <header id="header">
+                <div id="time"></div>
+                <div id="date"></div>
+            </header>
 
-        body {
-            color: var(--text-color);
-            /* Uncomment if background is not transparent */
-            /*background: var(--bg-color);*/
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 2rem;
-            box-sizing: border-box;
-            line-height: 1.4;
-        }
+            <section id="search">
+                <form class="search-form" id="main-search-form" action="https://www.google.com/search" method="get">
+                    <input type="search" id="search-input" name="q" placeholder="Search Google (Ctrl+Space to change)" autofocus>
+                </form>
+            </section>
 
-        input::placeholder, body {
-            font-family: 'Inconsolata', 'Droid Sans Mono', 'DejaVu Sans Mono', 'Ubuntu Mono', 'Consolas', 'Monaco', monospace;
-        }
+            <section id="links">
+                <ul id="shelf">
+                    <li class="shortcut"><a href="https://github.com/" title="GitHub">GitHub</a></li>
+                    <li class="shortcut"><a href="https://reddit.com/" title="Reddit">Reddit</a></li>
+                    <li class="shortcut"><a href="https://mail.proton.me/" title="Proton Mail">Mail</a></li>
+                    <li class="shortcut"><a href="https://calendar.google.com/" title="Google Calendar">Calendar</a></li>
+                    <li class="shortcut"><a href="https://www.youtube.com/" title="YouTube">YouTube</a></li>
+                    <li class="shortcut"><a href="https://music.youtube.com/" title="Youtube Music">Music</a></li>
+                    <li class="shortcut"><a href="https://www.wikipedia.org/" title="Wikipedia">Wiki</a></li>
+                    <li class="shortcut"><a href="https://www.messenger.com" title="Messenger">Messenger</a></li>
+                    <li class="shortcut"><a href="https://stackoverflow.com/" title="Stack Overflow">Stack Overflow</a></li>
+                    <li class="shortcut"><a href="https://developer.mozilla.org/en-US/" title="MDN Web Docs">MDN</a></li>
+                    <li class="shortcut"><a href="https://app.daily.dev/" title="Daily Dev">Daily Dev</a></li>
+                    <li class="shortcut"><a href="https://web.whatsapp.com/" title="Whatsapp">Whatsapp</a></li>
+                </ul>
+            </section>
+        </main>
 
-        main {
-            max-width: 800px;
-            width: 100%;
-            text-align: center;
-        }
-
-        #header {
-            margin-bottom: 3rem;
-        }
-
-        #time {
-            font-size: 8vw;
-            font-weight: 300;
-            line-height: 1;
-        }
-
-        #date {
-            font-size: 2rem;
-            font-weight: 200;
-            opacity: 0.8;
-            margin-top: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        #search {
-            margin: 4rem 0;
-        }
-
-        .search-form {
-            display: flex;
-            justify-content: center;
-        }
-
-        input[type="search"] {
-            width: 100%;
-            max-width: 600px;
-            padding: 0.8rem 1.5rem;
-            font-size: 1.3rem;
-            background: transparent;
-            color: var(--text-color);
-            border: 1px solid var(--text-color);
-            box-sizing: border-box;
-            border-radius: 6px;
-            outline: none;
-            transition: box-shadow 0.15s ease, border-color 0.15s ease;
-        }
-
-        input[type="search"]::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        input[type="search"]:focus {
-            box-shadow: 0 0 0 3px var(--text-color);
-            border-color: var(--text-color);
-        }
-
-        #shelf {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.2rem;
-            list-style: none;
-            padding: 0;
-            margin-top: 4rem;
-        }
-
-        .shortcut a {
-            display: block;
-            text-decoration: none;
-            color: var(--text-color);
-            padding: 0rem 1rem;
-            font-size: 1.2rem;
-            border: 1px solid transparent;
-            border-radius: 4px;
-            transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
-            outline: none;
-        }
-
-        .shortcut a:focus,
-        .shortcut a:hover {
-            border-color: var(--text-color);
-            background-color: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 0 1px var(--text-color);
-        }
-
-        @media (min-width: 600px) {
-            #time { font-size: 6rem; }
-        }
-        @media (max-width: 480px) {
-            #time { font-size: 15vw; }
-            #date { font-size: 1.1rem; }
-            input[type="search"] { font-size: 1rem; padding: 0.6rem 1rem; }
-            #shelf { gap: 0.8rem; }
-            .shortcut a { font-size: 0.9rem; padding: 0.4rem 0.8rem; }
-        }
-    </style>
-</head>
-<body>
-    <main>
-        <header id="header">
-            <div id="time"></div>
-            <div id="date"></div>
-        </header>
-
-        <section id="search">
-            <form class="search-form" id="main-search-form" action="https://www.google.com/search" method="get">
-                <input type="search" id="search-input" name="q" placeholder="Search Google (Ctrl+Space to change)" autofocus>
-            </form>
-        </section>
-
-        <section id="links">
-            <ul id="shelf">
-                <li class="shortcut"><a href="https://github.com/" title="GitHub">GitHub</a></li>
-                <li class="shortcut"><a href="https://reddit.com/" title="Reddit">Reddit</a></li>
-                <li class="shortcut"><a href="https://mail.proton.me/" title="Proton Mail">Mail</a></li>
-                <li class="shortcut"><a href="https://calendar.google.com/" title="Google Calendar">Calendar</a></li>
-                <li class="shortcut"><a href="https://www.youtube.com/" title="YouTube">YouTube</a></li>
-                <li class="shortcut"><a href="https://music.youtube.com/" title="Youtube Music">Music</a></li>
-                <li class="shortcut"><a href="https://www.wikipedia.org/" title="Wikipedia">Wiki</a></li>
-                <li class="shortcut"><a href="https://www.messenger.com" title="Messenger">Messenger</a></li>
-                <li class="shortcut"><a href="https://stackoverflow.com/" title="Stack Overflow">Stack Overflow</a></li>
-                <li class="shortcut"><a href="https://developer.mozilla.org/en-US/" title="MDN Web Docs">MDN</a></li>
-                <li class="shortcut"><a href="https://app.daily.dev/" title="Daily Dev">Daily Dev</a></li>
-                <li class="shortcut"><a href="https://web.whatsapp.com/" title="Whatsapp">Whatsapp</a></li>
-            </ul>
-        </section>
-    </main>
-
-    <script>
-        const timeDisplay = document.getElementById('time');
-        const dateDisplay = document.getElementById('date');
-
-        function updateClock() {
-            const now = new Date();
-
-            const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
-            const timeString = now.toLocaleTimeString('en-US', timeOptions);
-
-            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const dateString = now.toLocaleDateString('en-US', dateOptions);
-
-            timeDisplay.textContent = timeString;
-            dateDisplay.textContent = dateString;
-        }
-
-        updateClock();
-        setInterval(updateClock, 1000);
-
-        const searchForm = document.getElementById('main-search-form');
-        const searchInput = document.getElementById('search-input');
-
-        const engines = [
-            { name: "Google", action: "https://www.google.com/search", param: "q" },
-            { name: "YouTube", action: "https://www.youtube.com/results", param: "search_query" },
-            { name: "YouTube Music", action: "https://music.youtube.com/search", param: "q" },
-            { name: "Brave", action: "https://search.brave.com/search", param: "q" },
-            { name: "GitHub", action: "https://github.com/search", param: "q" },
-            { name: "Arch Wiki", action: "https://wiki.archlinux.org/index.php", param: "search" }
-        ];
-        let currentEngineIndex = 0;
-
-        function updateEngineDisplay() {
-            const currentEngine = engines[currentEngineIndex];
-
-            searchForm.action = currentEngine.action;
-            searchInput.name = currentEngine.param;
-            searchInput.placeholder = `Search ${currentEngine.name} (Ctrl+Space to change)`;
-        }
-
-        function cycleEngine(direction) {
-            currentEngineIndex += direction;
-
-            const length = engines.length;
-            if (currentEngineIndex >= length) {
-                currentEngineIndex = 0;
-            } else if (currentEngineIndex < 0) {
-                currentEngineIndex = length - 1;
-            }
-
-            updateEngineDisplay();
-        }
-
-        searchInput.addEventListener('keydown', (e) => {
-            const isCtrlOrMeta = e.ctrlKey || e.metaKey;
-
-            if (isCtrlOrMeta && e.key === ' ') {
-                e.preventDefault();
-                e.stopPropagation();
-
-                if (e.shiftKey) cycleEngine(-1);
-                else cycleEngine(1);
-            }
-        });
-
-        updateEngineDisplay();
-    </script>
-</body>
+        <script src="main.js"></script>
+    </body>
 </html>
