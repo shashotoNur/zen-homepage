@@ -1,13 +1,20 @@
 # Ignore everything by default
 *
 
-# Files to be tracked
+# Unignored
 !.gitignore
 !index.html
 !style.css
 !main.js
 !manifest.json
-!screenshot.png
+!icon.svg
 !README.md
 !LICENCE
+
+# Whitelist the specific directories containing whitelisted files
+!preview/
+!web-ext-artifacts/
+
+# Whitelist the specific files within the whitelisted directories
+!preview/*.png
 !web-ext-artifacts/*.xpi

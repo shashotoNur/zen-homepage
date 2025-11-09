@@ -24,20 +24,47 @@
 
             <section id="links">
                 <ul id="shelf">
-                    <li class="shortcut"><a href="https://github.com/" title="GitHub">GitHub</a></li>
-                    <li class="shortcut"><a href="https://reddit.com/" title="Reddit">Reddit</a></li>
-                    <li class="shortcut"><a href="https://mail.proton.me/" title="Proton Mail">Mail</a></li>
-                    <li class="shortcut"><a href="https://calendar.google.com/" title="Google Calendar">Calendar</a></li>
-                    <li class="shortcut"><a href="https://www.youtube.com/" title="YouTube">YouTube</a></li>
-                    <li class="shortcut"><a href="https://music.youtube.com/" title="Youtube Music">Music</a></li>
-                    <li class="shortcut"><a href="https://www.wikipedia.org/" title="Wikipedia">Wiki</a></li>
-                    <li class="shortcut"><a href="https://www.messenger.com" title="Messenger">Messenger</a></li>
-                    <li class="shortcut"><a href="https://stackoverflow.com/" title="Stack Overflow">Stack Overflow</a></li>
-                    <li class="shortcut"><a href="https://developer.mozilla.org/en-US/" title="MDN Web Docs">MDN</a></li>
-                    <li class="shortcut"><a href="https://app.daily.dev/" title="Daily Dev">Daily Dev</a></li>
-                    <li class="shortcut"><a href="https://web.whatsapp.com/" title="Whatsapp">Whatsapp</a></li>
                 </ul>
             </section>
+            <button id="config-btn" title="Customize">&#9881;</button>
+            <div id="config-panel" class="hidden">
+                <div class="panel-header">
+                    <h2>Customize</h2>
+                </div>
+
+                <section id="data-tools">
+                    <h3>Data Management</h3>
+
+                    <button id="export-data-btn">Export Data</button>
+                    <button id="import-data-btn">Import Data</button>
+                    <button id="erase-data-btn">Reset</button>
+
+                    <input type="file" id="import-file-input" accept="application/json" hidden>
+                </section>
+
+
+                <section>
+                    <h3>Shortcuts</h3>
+                    <div>
+                        <input data-type="shortcut" data-field="title" data-i="-1" id="new-shortcut-title" value="" placeholder="Hacker News">
+                        <input data-type="shortcut" data-field="url" data-i="-1" id="new-shortcut-url" value="" placeholder="https://news.ycombinator.com/">
+                        <button id="add-shortcut-btn">Add Shortcut</button>
+                    </div>
+                    <div id="shortcut-list"></div>
+                </section>
+
+                <section>
+                    <h3>Search Engines</h3>
+                    <div>
+                        <input data-type="engine" data-field="name" data-i="-1" id="new-engine-name" value="" placeholder="Engine Name">
+                        <input data-type="engine" data-field="action" data-i="-1" id="new-engine-action" value="" placeholder="Engine URL">
+                        <input data-type="engine" data-field="param" data-i="-1" id="new-engine-param" value="" placeholder="Parameter for search (e.g. q)">
+                        <button id="add-engine-btn">Add Engine</button>
+                    </div>
+                    <div id="engine-list"></div>
+                </section>
+            </div>
+
         </main>
 
         <script src="main.js"></script>

@@ -1,10 +1,14 @@
 {
   "manifest_version": 2,
   "name": "Zen Homepage",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple, fast, and highly customizable browser startpage designed for minimalism and efficiency.",
   "chrome_url_overrides": {
     "newtab": "index.html"
+  },
+  "icons": {
+    "32": "icon.svg",
+    "64": "icon.svg"
   },
   "browser_specific_settings": {
     "gecko": {

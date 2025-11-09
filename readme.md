@@ -1,103 +1,83 @@
 # Zen Homepage
 
-A simple, fast, and highly customizable browser startpage designed for **minimalism** and **efficiency**. This single-file project provides a clean interface featuring a clock, a powerful search bar, and essential quick-access links, making it an ideal replacement for your browser's default New Tab page.
+> [!IMPORTANT]  
+> This homepage is for transparent firefox only.
+
+A simple, fast, and highly customizable browser startpage designed for **minimalism** and **efficiency**.
 
 -----
 
-## Features
+## Core Features and Customization
 
-  * **Real-Time Clock and Date:** Displays the current time and date, dynamically updated every second using clean JavaScript.
-  * **Monospace Aesthetic:** Uses the highly readable **Inconsolata** font stack to deliver a distinct, clean, and terminal-like visual style.
-  * **Dynamic Search Engine Cycling:** Switch between different search providers (Google, YouTube, GitHub, etc.) directly from the input field using a simple keyboard shortcut.
-  * **Keyboard Shortcut:**
-      * Use **`Ctrl + Space`** (or $\text{Cmd} + \text{Space}$ on macOS) to cycle to the **next** search engine.
-      * Use **`Ctrl + Shift + Space`** to cycle to the **previous** search engine.
-  * **Quick Links ("The Shelf"):** A customizable list of essential website shortcuts displayed at the bottom.
-  * **Zero Dependencies:** The entire startpage is contained within one self-sufficient **`index.html`** file (HTML, CSS, and JavaScript are inline) for maximum portability and speed.
+This minimalist homepage is designed for efficiency and a clean, terminal-like aesthetic, offering powerful customization options accessible via the **Settings Panel**.
+
+### User Interface and Design
+
+* **Real-Time Clock and Date:** A dynamically updated display showing the current time and date, powered by lean JavaScript for constant accuracy.
+* **Monospace Aesthetic:** The interface utilizes the highly readable **Inconsolata** font stack, delivering a distinct, clean, and **terminal-like** visual style that minimizes distraction.
+
+### Shortcuts and Search Functionality
+
+* **Dynamic Search Engine Cycling:** Quickly switch your search context between different providers (e.g., **Google**, **YouTube**, **GitHub**) directly within the main input field using simple keyboard commands.
+    * **Next Search Engine:** Press $\text{Ctrl} + \text{Space}$ (or $\text{Cmd} + \text{Space}$ on macOS).
+    * **Previous Search Engine:** Press $\text{Ctrl} + \text{Shift} + \text{Space}$.
+* **Quick Links ("The Shelf"):** A customizable list of essential website shortcuts displayed discreetly at the bottom of the page for rapid access.
+
+### Customization Panel (Gear Icon)
+
+Access the **Settings Panel** (via the **gear icon** $\boldsymbol{\text{⚙}}$) for full control over your shortcuts and search engines:
+
+* **Manage Shortcuts & Search Engines:** Easily **add new** entries, **edit** existing ones, or **delete** them.
+* **Reordering:** Customize the display order of your quick links and search engines by **dragging and dropping** them within the list.
 
 -----
 
-## Installation
+## Installation Guide
 
-This repo is hosted as a [Github Page](https://shashotonur.github.io/zen-homepage/). You can simply set it as homepage and new tab (using the addon **"New Tab Override"**).
+This project offers two primary methods for installation: using the hosted **GitHub Page** URL directly, or installing the provided **Browser Add-on** for a cleaner, server-free setup.
 
-Alternatively, a cleaner approach would be to set it up without a server:
-1. Open the `.xpi` file inside `web-ext-artifacts` directory with your browser to install it as an addon. It should automatically set the new tab page.
-2. For the home page, you would need the addon's url.
-    a. Scroll down to the Zen Homepage addon in the `about:debugging#/runtime/this-firefox` page.
-    b. There should be manifest url similar to `moz-extension://<some_text>/manifest.json`. Copy it.
-    c. Go to `about:preferences#home` and set homepage to custom url, insert the copied url in the empty field, replace `manifest.json` at the end with `index.html` and press enter.
+### Option 1: Using the Hosted GitHub Page (Simplest)
 
------
+The homepage is hosted at: `https://shashotonur.github.io/zen-homepage/`
 
-## Customization
+* **As Homepage:** Set the URL above as your browser's custom **homepage**.
+* **As New Tab Page:** Use a browser extension (like **"New Tab Override"** for Firefox) that allows you to specify a custom URL for new tabs. Set the URL above within that extension's settings.
 
-You can tailor the startpage to your preferences by editing the `index.html` file.
+### Option 2: Server-Free Browser Add-on (Recommended for New Tab)
 
-### 1\. Search Engines
+This method uses the pre-built browser extension for direct installation, bypassing external hosting.
 
-Modify or add new search engines by editing the `engines` array located within the `main.js` file.
-
-| Property | Description |
-| :--- | :--- |
-| `name` | The friendly name that appears in the search input placeholder (e.g., "GitHub"). |
-| `action` | The base URL the form submits to (e.g., `https://github.com/search`). |
-| `param` | The **query parameter** name used by the search engine to pass the search term (e.g., `q` for Google, `search_query` for YouTube). |
-
-**Example:**
-
-```javascript
-const engines = [
-    { name: "Google", action: "https://www.google.com/search", param: "q" },
-    { name: "YouTube", action: "https://www.youtube.com/results", param: "search_query" },
-    // Add a new engine:
-    { name: "Bing", action: "https://www.bing.com/search", param: "q" }, 
-    // ...
-];
-```
-
-### 2\. Quick Links
-
-The displayed shortcuts are located in the `<ul id="shelf">` element under the `<section id="links">` block.
-
-To change a link, modify the `href` and the visible text.
-
-```html
-<ul id="shelf">
-    <li class="shortcut"><a href="https://github.com/" title="GitHub">GitHub</a></li>
-    <li class="shortcut"><a href="https://reddit.com/" title="Reddit">Reddit</a></li>
-    </ul>
-```
-
-### 3\. Appearance and Colors (CSS)
-
-All styles, including the dark mode color scheme, are in the `style.css` file.
-
-You can adjust the theme colors using the CSS variables defined in `:root`:
-
-```css
-:root {
-    --text-color: #fff; /* Controls text and border color */
-    --bg-color: #000;   /* Controls the optional body background */
-}
-```
-
-To enable a solid background instead of a transparent one (which lets your browser's background/wallpaper show), **uncomment** the `background` line in the `body` CSS rule:
-
-```css
-body {
-    color: var(--text-color);
-    /* Uncomment if background is not transparent */
-    /*background: var(--bg-color);*/ 
-    /* ... other styles ... */
-}
-```
+1.  **Install the Add-on:**
+    * Locate the extension file, typically named similar to `zen-homepage-vX.X.X.xpi`, inside the local **`web-ext-artifacts`** directory.
+    * **Open** this `.xpi` file directly with your browser (e.g., File > Open File, or drag-and-drop) to begin the installation.
+    * The add-on should automatically be configured to serve as your **new tab page**.
+2.  **Set as Custom Homepage (If Needed):**
+    * The homepage setting requires the internal URL assigned to the installed add-on.
+    * Open a **new tab** (which should now display the extension's page).
+    * Open your browser's **Web Console** (usually F12 or Ctrl+Shift+K/I).
+    * Run the following command in the console: `window.location.href`
+    * **Copy** the resulting output URL (this is the internal path, e.g., `moz-extension://...`).
+    * Set this copied URL as your browser's custom **homepage**.
 
 -----
 
 ## Preview
 
-![Zen Homepage Preview](screenshot.png)
+**Homepage**
+
+![Zen Homepage Preview](preview/home.png)
+
+**Side Panel**
+
+![Zen Side Panel Preview](preview/panel.png)
+
+**Drag Preview**
+
+![Zen Drag Preview](preview/drag.png)
+
+**Editing Preview**
+
+![Zen Edit Preview](preview/edit.png)
 
 -----
 

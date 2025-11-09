@@ -1,31 +1,48 @@
 :root {
     --text-color: #fff;
-    --bg-color: #000;
 }
+
+/* Global Styles and Typography */
+/* --- */
 
 body {
     color: var(--text-color);
-    /* Uncomment if background is not transparent */
-    /*background: var(--bg-color);*/
+    font-family: 'Inconsolata', 'Droid Sans Mono', 'DejaVu Sans Mono', 'Ubuntu Mono', 'Consolas', 'Monaco', monospace;
+    line-height: 1.4;
+    
+    /* Layout */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    
+    /* Spacing and Sizing */
     margin: 0;
     padding: 2rem;
     box-sizing: border-box;
-    line-height: 1.4;
 }
 
-input::placeholder, body {
+input::placeholder {
+    font-family: inherit;
+    font-weight: 400;
     font-family: 'Inconsolata', 'Droid Sans Mono', 'DejaVu Sans Mono', 'Ubuntu Mono', 'Consolas', 'Monaco', monospace;
 }
+
+button {
+    font-weight: 300;
+}
+
+/* Main Content Layout */
+/* --- */
 
 main {
     max-width: 800px;
     width: 100%;
     text-align: center;
 }
+
+/* Header and Time/Date Display */
+/* --- */
 
 #header {
     margin-bottom: 3rem;
@@ -45,6 +62,9 @@ main {
     margin-bottom: 1rem;
 }
 
+/* Search Bar */
+/* --- */
+
 #search {
     margin: 4rem 0;
 }
@@ -55,16 +75,21 @@ main {
 }
 
 input[type="search"] {
+    /* Sizing and Spacing */
     width: 100%;
     max-width: 600px;
     padding: 0.8rem 1.5rem;
     font-size: 1.3rem;
+    box-sizing: border-box;
+
+    /* Appearance */
     background: transparent;
     color: var(--text-color);
     border: 1px solid var(--text-color);
-    box-sizing: border-box;
     border-radius: 6px;
     outline: none;
+    
+    /* Transition */
     transition: box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
@@ -77,10 +102,16 @@ input[type="search"]:focus {
     border-color: var(--text-color);
 }
 
+/* Shortcuts Shelf */
+/* --- */
+
 #shelf {
+    /* Layout */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    
+    /* Spacing and List Reset */
     gap: 1.2rem;
     list-style: none;
     padding: 0;
@@ -88,15 +119,20 @@ input[type="search"]:focus {
 }
 
 .shortcut a {
+    /* Layout and Spacing */
     display: block;
-    text-decoration: none;
-    color: var(--text-color);
     padding: 0rem 1rem;
     font-size: 1.2rem;
+    
+    /* Appearance */
+    text-decoration: none;
+    color: var(--text-color);
     border: 1px solid transparent;
     border-radius: 4px;
-    transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
     outline: none;
+    
+    /* Transition */
+    transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .shortcut a:focus,
@@ -106,13 +142,266 @@ input[type="search"]:focus {
     box-shadow: 0 0 0 1px var(--text-color);
 }
 
+/* Configuration Button */
+/* --- */
+
+#config-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    
+    /* Appearance */
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.4rem;
+    
+    /* Sizing and Stacking */
+    padding: 0.6rem 0.9rem;
+    z-index: 999999999;
+}
+
+/* Configuration Panel */
+/* --- */
+
+#config-panel {
+    /* Positioning and Sizing */
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 340px;
+    height: 100vh;
+    padding: 1.8rem 1.6rem;
+    
+    /* Appearance */
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-color);
+    font-family: inherit;
+    
+    /* Scroll and Stacking */
+    overflow-y: auto;
+    z-index: 999;
+
+    /* Animation */
+    transform: translateX(100%);
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+#config-panel.open {
+    transform: translateX(0);
+}
+
+/* Panel Header and Sections */
+/* --- */
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.panel-header h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 300;
+    opacity: 0.9;
+    letter-spacing: 0.03em;
+}
+
+#config-panel section {
+    margin-bottom: 2.4rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+#config-panel h3 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin: 0 0 1rem 0;
+    opacity: 0.8;
+}
+
+/* Config Panel Inputs */
+/* --- */
+
+#config-panel input[type="text"],
+#config-panel input[type="url"],
+#config-panel input[data-type] {
+    /* Sizing and Spacing */
+    width: 100%;
+    margin-bottom: 0.7rem;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+
+    /* Appearance */
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: var(--text-color);
+    border-radius: 4px;
+    outline: none;
+    
+    /* Typography */
+    font-weight: 300;
+
+    /* Transition */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#config-panel input:focus {
+    border-color: var(--text-color);
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.2);
+}
+
+#config-panel input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Config Panel Action Buttons */
+/* --- */
+
+#add-shortcut-btn,
+#add-engine-btn,
+.delete-shortcut,
+.delete-engine {
+    /* Appearance */
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-color);
+    border-radius: 4px;
+    
+    /* Sizing and Spacing */
+    padding: 0.45rem 1rem;
+    font-size: 0.85rem;
+    margin-top: 0.4rem;
+    
+    /* Transition */
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+#add-shortcut-btn,
+#add-engine-btn {
+    margin-bottom: 3rem;
+}
+
+#add-shortcut-btn:hover,
+#add-engine-btn:hover,
+.delete-shortcut:hover,
+.delete-engine:hover {
+    border-color: var(--text-color);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Config Panel Scrollbar Styling */
+/* --- */
+
+#config-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+#config-panel::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 4px;
+}
+#config-panel::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+/* Data Tools Section */
+/* --- */
+
+#data-tools h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 300;
+    opacity: 0.8;
+}
+
+#data-tools button {
+    /* Sizing and Spacing */
+    width: 40%;
+    text-align: center;
+    margin-bottom: 0.6rem;
+    padding: 0.55rem 1rem;
+    font-size: 0.9rem;
+    
+    /* Appearance */
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    color: var(--text-color);
+    cursor: pointer;
+    
+    /* Transition */
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+#data-tools button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: var(--text-color);
+}
+
+/* Config Item Dropdown */
+/* --- */
+
+.config-item {
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.config-label {
+    /* Sizing and Appearance */
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    background: none;
+    color: var(--text-color);
+    
+    /* Typography */
+    font-size: 1.05rem;
+    font-weight: 300;
+    text-align: left;
+}
+
+.item-edit {
+    max-height: 0;
+    padding: 0 10px;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+
+.config-item.expanded .item-edit {
+    max-height: 500px; 
+    padding: 10px;
+}
+
+.item-edit > * {
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Media Queries */
+/* --- */
+
 @media (min-width: 600px) {
     #time { font-size: 6rem; }
 }
 @media (max-width: 480px) {
     #time { font-size: 15vw; }
     #date { font-size: 1.1rem; }
-    input[type="search"] { font-size: 1rem; padding: 0.6rem 1rem; }
-    #shelf { gap: 0.8rem; }
-    .shortcut a { font-size: 0.9rem; padding: 0.4rem 0.8rem; }
+    input[type="search"] { 
+        font-size: 1rem; 
+        padding: 0.6rem 1rem; 
+    }
+    #shelf { 
+        gap: 0.8rem; 
+    }
+    .shortcut a { 
+        font-size: 0.9rem; 
+        padding: 0.4rem 0.8rem; 
+    }
 }
