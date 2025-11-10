@@ -68,41 +68,148 @@ const persist = () => {
 
 // Rendering helpers -----------------------------------------------------------
 
-const renderList = (container, items, cb) => {
-    container.innerHTML = items.map(cb).join("");
-};
-
 function renderShelf() {
-    renderList(el.shelf, shortcuts, s =>
-        `<li class="shortcut"><a href="${s.url}" title="${s.title}">${s.title}</a></li>`
-    );
+    const container = el.shelf;
+
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    shortcuts.forEach(s => {
+        // Create the <li> element
+        const listItem = document.createElement('li');
+        listItem.classList.add('shortcut');
+
+        // Create the <a> element
+        const anchor = document.createElement('a');
+        anchor.href = s.url;
+        anchor.title = s.title;
+
+        // Use textContent to safely insert user-defined text
+        anchor.textContent = s.title;
+
+        // Assemble the structure
+        listItem.appendChild(anchor);
+        fragment.appendChild(listItem);
+    });
+
+    // Single, safe append
+    container.appendChild(fragment);
 }
 
 function renderShortcuts() {
-    renderList(el.shortcutList, shortcuts, (s, i) => `
-        <div class="config-item" draggable="true" data-id="${s.title}" data-type="shortcut">
-            <button class="config-label">${s.title}</button>
-            <div class="item-edit">
-                <input data-type="shortcut" data-field="title" data-i="${i}" value="${s.title}">
-                <input data-type="shortcut" data-field="url" data-i="${i}" value="${s.url}">
-                <button class="delete-shortcut" data-i="${i}">Delete</button>
-            </div>
-        </div>
-    `);
+    const container = el.shortcutList;
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+    const fragment = document.createDocumentFragment();
+
+    shortcuts.forEach((s, i) => {
+        // Outer div: config-item
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('config-item');
+        itemDiv.draggable = true;
+        itemDiv.dataset.id = s.title;
+        itemDiv.dataset.type = 'shortcut';
+
+        // Button: config-label
+        const labelButton = document.createElement('button');
+        labelButton.classList.add('config-label');
+        labelButton.textContent = s.title;
+
+        // Inner div: item-edit
+        const editDiv = document.createElement('div');
+        editDiv.classList.add('item-edit');
+
+        // Input Title
+        const inputTitle = document.createElement('input');
+        inputTitle.dataset.type = 'shortcut';
+        inputTitle.dataset.field = 'title';
+        inputTitle.dataset.i = i;
+        inputTitle.value = s.title;
+
+        // Input URL
+        const inputUrl = document.createElement('input');
+        inputUrl.dataset.type = 'shortcut';
+        inputUrl.dataset.field = 'url';
+        inputUrl.dataset.i = i;
+        inputUrl.value = s.url;
+
+        // Delete Button
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('delete-shortcut');
+        deleteButton.dataset.i = i;
+        deleteButton.textContent = 'Delete';
+
+        // Assembly
+        editDiv.append(inputTitle, inputUrl, deleteButton);
+        itemDiv.append(labelButton, editDiv);
+        fragment.appendChild(itemDiv);
+    });
+
+    container.appendChild(fragment);
 }
 
 function renderEngines() {
-    renderList(el.engineList, engines, (e, i) => `
-        <div class="config-item" draggable="true" data-id="${e.name}" data-type="engine">
-            <button class="config-label">${e.name}</button>
-            <div class="item-edit">
-                <input data-type="engine" data-field="name" data-i="${i}" value="${e.name}">
-                <input data-type="engine" data-field="action" data-i="${i}" value="${e.action}">
-                <input data-type="engine" data-field="param" data-i="${i}" value="${e.param}">
-                <button class="delete-engine" data-i="${i}">Delete</button>
-            </div>
-        </div>
-    `);
+    const container = el.engineList;
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+    const fragment = document.createDocumentFragment();
+
+    engines.forEach((e, i) => {
+        // Outer div: config-item
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('config-item');
+        itemDiv.draggable = true;
+        itemDiv.dataset.id = e.name;
+        itemDiv.dataset.type = 'engine';
+
+        // Button: config-label
+        const labelButton = document.createElement('button');
+        labelButton.classList.add('config-label');
+        labelButton.textContent = e.name;
+
+        // Inner div: item-edit
+        const editDiv = document.createElement('div');
+        editDiv.classList.add('item-edit');
+
+        // Input Name
+        const inputName = document.createElement('input');
+        inputName.dataset.type = 'engine';
+        inputName.dataset.field = 'name';
+        inputName.dataset.i = i;
+        inputName.value = e.name;
+
+        // Input Action
+        const inputAction = document.createElement('input');
+        inputAction.dataset.type = 'engine';
+        inputAction.dataset.field = 'action';
+        inputAction.dataset.i = i;
+        inputAction.value = e.action;
+
+        // Input Param
+        const inputParam = document.createElement('input');
+        inputParam.dataset.type = 'engine';
+        inputParam.dataset.field = 'param';
+        inputParam.dataset.i = i;
+        inputParam.value = e.param;
+
+        // Delete Button
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('delete-engine');
+        deleteButton.dataset.i = i;
+        deleteButton.textContent = 'Delete'; // Safe text insertion
+
+        // Assembly
+        editDiv.append(inputName, inputAction, inputParam, deleteButton);
+        itemDiv.append(labelButton, editDiv);
+        fragment.appendChild(itemDiv);
+    });
+
+    container.appendChild(fragment);
 }
 
 // Accordion ------------------------------------------------------------------
@@ -155,7 +262,7 @@ el.searchInput.addEventListener("keydown", e => {
 document.addEventListener("input", e => {
     const t = e.target;
     const { type, field, i } = t.dataset;
-    if (!type || !field) return;
+    if (!type || !field || i == -1) return;
 
     if (type === "shortcut") {
         shortcuts[i][field] = t.value;

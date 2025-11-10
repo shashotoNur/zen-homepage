@@ -1,8 +1,9 @@
 {
   "manifest_version": 2,
   "name": "Zen Homepage",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple, fast, and highly customizable browser startpage designed for minimalism and efficiency.",
+  "license": "MIT",
   "chrome_url_overrides": {
     "newtab": "index.html"
   },

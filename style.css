@@ -2,12 +2,20 @@
     --text-color: #fff;
 }
 
+@font-face {
+    font-family: 'Inconsolata';
+    src: url('./font/Inconsolata-VariableFont_wdth,wght.ttf') format('truetype');
+    font-weight: 200 900;
+    font-stretch: 50% 200%;
+    font-display: swap;
+}
+
 /* Global Styles and Typography */
 /* --- */
 
 body {
     color: var(--text-color);
-    font-family: 'Inconsolata', 'Droid Sans Mono', 'DejaVu Sans Mono', 'Ubuntu Mono', 'Consolas', 'Monaco', monospace;
+    font-family: 'Inconsolata', monospace;
     line-height: 1.4;
     
     /* Layout */
@@ -25,7 +33,7 @@ body {
 input::placeholder {
     font-family: inherit;
     font-weight: 400;
-    font-family: 'Inconsolata', 'Droid Sans Mono', 'DejaVu Sans Mono', 'Ubuntu Mono', 'Consolas', 'Monaco', monospace;
+    font-family: 'Inconsolata', monospace;
 }
 
 button {

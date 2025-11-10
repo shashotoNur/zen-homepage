@@ -1,0 +1,14 @@
+{
+  "version": {
+    "license": "MIT" 
+  },
+  "categories": {
+    "firefox": ["appearance", "privacy-security", "search-tools"] 
+  },
+  "summary": {
+    "en-US": "A simple, fast, and customizable startpage for better focus and efficiency."
+  },
+  "homepage": {
+    "en-US": "https://github.com/shashotoNur/zen-homepage/"
+  }
+}

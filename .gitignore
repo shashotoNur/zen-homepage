@@ -7,6 +7,7 @@
 !style.css
 !main.js
 !manifest.json
+!amo-metadata.json
 !icon.svg
 !README.md
 !LICENCE
@@ -14,7 +15,10 @@
 # Whitelist the specific directories containing whitelisted files
 !preview/
 !web-ext-artifacts/
+!font/
 
 # Whitelist the specific files within the whitelisted directories
 !preview/*.png
 !web-ext-artifacts/*.xpi
+!font/*.ttf
+!font/*.txt
